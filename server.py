@@ -13,6 +13,7 @@ import messenger
 app = Flask(__name__)
 
 FACEBOOK_TOKEN = os.environ['FACEBOOK_TOKEN']
+content_model = None
 
 def create_content_model(text):
     tokens = nltk.word_tokenize(text)
@@ -21,9 +22,7 @@ def create_content_model(text):
     print "modelized"
     return m
 
-content_model = create_content_model(open("corpus.txt").read())
-
-@app.route('/verify')
+@app.route('/', methods=['GET'])
 def verify():
     if request.args.get('hub.verify_token', '') == os.environ['VERIFY_TOKEN']:
         return request.args.get('hub.challenge', '')
@@ -66,4 +65,8 @@ def format_response(content):
 if __name__ == '__main__':
     # Suppress nltk warnings about not enough data
     warnings.filterwarnings('ignore', '.*returning an arbitrary sample.*',)
+
+    if os.path.exists("corpus.txt"):
+        content_model = create_content_model(open("corpus.txt").read())
+
     app.run(port=3000, debug=True)
