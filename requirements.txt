@@ -1,0 +1,4 @@
+flask
+requests
+nltk==2.0.4
+email_reply_parser

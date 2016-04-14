@@ -1,0 +1,25 @@
+import sys
+import mailbox
+import mail_parser
+import nltk
+import itertools
+try:
+    import cPickle as pickle
+except ImportError:
+    import pickle
+
+def main():
+    """Extract the texts of emails from a specified mailbox and
+    from a specified set of senders and write corpus.txt.
+
+    Usage: python mail_corpus.py output mboxfile email1@example.com email2@example.com
+    """
+    mbox = mailbox.mbox(sys.argv[2])
+    addresses = set(sys.argv[3:])
+    f = open(sys.argv[1], "w")
+    for text in mail_parser.mail_texts(mbox, addresses):
+        print >> f, text
+    f.close()
+
+if __name__ == '__main__':
+    main()
