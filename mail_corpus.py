@@ -1,12 +1,6 @@
 import sys
 import mailbox
 import mail_parser
-import nltk
-import itertools
-try:
-    import cPickle as pickle
-except ImportError:
-    import pickle
 
 def main():
     """Extract the texts of emails from a specified mailbox and
