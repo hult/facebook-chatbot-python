@@ -11,8 +11,9 @@ Use of virtualenv is highly recommended, especially since the old version of `nl
 
 ## Setting up a Facebook app for Facebook messenger
 
-* Follow the instructions provided in the [Facebook quickstart tutorial](https://developers.facebook.com/docs/messenger-platform/quickstart) for creating a page and an app.
 * You're going to need a publicly routed https address. I used [ngrok](https://ngrok.com/) to create a tunnel to my local development machine.
+* The server will need to be started for you to verify the webhook. See "Starting the server" below.
+* Follow the instructions provided in the [Facebook quickstart tutorial](https://developers.facebook.com/docs/messenger-platform/quickstart) for creating a page and an app.
 * Set the `VERIFY_TOKEN` and `FACEBOOK_TOKEN` environment variables to the values you get from following the tutorial.
 
 ## Building a corpus
